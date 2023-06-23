@@ -3,12 +3,17 @@ import styles from "./Player.module.css";
 import videos from "json/db.json";
 import Banner from "components/Banner";
 import { useParams } from "react-router-dom";
+import NaoEncontrada from "../NaoEncontrada";
 
 function Player() {
   const parametros = useParams();
   const video = videos.find((video) => {
     return video.id === Number(parametros.id);
   });
+
+  if (!video) {
+    return <NaoEncontrada />
+  }
 
   return (
     <>
